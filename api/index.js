@@ -37,7 +37,7 @@ app.listen(process.env.API_PORT, () =>{
     console.log("API Servidor escuchando en el puerto " + process.env.API_PORT);
 });
 
-if (process.env.environment != dev) {
+if (process.env.environment != "dev") {
     
     const app2 = express();
     app2.listen(3002, function(){
