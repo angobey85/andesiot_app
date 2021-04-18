@@ -136,7 +136,7 @@ global.check_mqtt_superuser = async function checkMqttSuperUser(){
             subscribe: ["#"],
             user_id: "aaaaaaaaaaa",
             username: "superuser",
-            password: "superuser",
+            password: "pass",
             type: "superuser",
             date: Date.now(),
             updatedDate: Date.now()

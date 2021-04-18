@@ -37,6 +37,19 @@ app.listen(process.env.API_PORT, () =>{
     console.log("API Servidor escuchando en el puerto " + process.env.API_PORT);
 });
 
+if (process.env.environment != dev) {
+    
+    const app2 = express();
+    app2.listen(3002, function(){
+        console.log("LISTENING ON PORT 3002");
+    });
+
+    app2.all('*', function(req,res){
+        console.log("NO SSL ACCESS REDIRECTING");
+        return res.redirect("https://" + req.headers["host"] + req.url);
+    });
+}
+
 //MONGO CONEXION
 
 const mongoUserName = process.env.MONGO_USERNAME;
