@@ -186,7 +186,7 @@ function startMqttClient (){
         enconding: 'utf8'
     }
 
-    client = mqtt.connect ('mqtt://' + 'localhost', options);
+    client = mqtt.connect ('mqtt://'+process.env.MQTT_HOST, options);
 
     client.on('connect', function(){
         console.log("\n");

@@ -278,7 +278,7 @@ async function createSaveRule(userId, equipment_id, status){
 
     try {
 
-        const url = "http://localhost:8085/api/v4/rules"
+        const url = "http://"+process.env.EMQX_NODE_HOST+":8085/api/v4/rules"
 
         const topic = "data/" + userId + "/" + equipment_id + "/+";
         const rawsql = 'SELECT topic, payload FROM \"' + topic + '\" WHERE payload.save=1';
@@ -330,7 +330,7 @@ async function createSaveRule(userId, equipment_id, status){
 //ACTUALIZAR REGLA SAVER
 
 async function updateSaveRuleStatus(emqxRuleId, status) {
-    const url = "http://localhost:8085/api/v4/rules/" + emqxRuleId;
+    const url = "http://"+process.env.EMQX_NODE_HOST+":8085/api/v4/rules/" + emqxRuleId;
   
     const newRule = {
       enabled: status
@@ -353,7 +353,7 @@ async function deleteSaveRule(dId) {
     try {
       const mongoRule = await SaveRule.findOne({ saverule_equipment_id: dId });
   
-      const url = "http://localhost:8085/api/v4/rules/" + mongoRule.saverule_emqx_rule_id;
+      const url = "http://"+process.env.EMQX_NODE_HOST+":8085/api/v4/rules/" + mongoRule.saverule_emqx_rule_id;
   
       const emqxRule = await axios.delete(url, auth);
   

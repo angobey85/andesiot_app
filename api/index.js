@@ -63,6 +63,8 @@ const options = {
         console.log("SE HA CONECTADO A MONGO CORRECTAMENTE".green);
         console.log("*************************************".green);
         console.log("\n");
+
+        global.check_mqtt_superuser();
     },
     
         (err)=>{

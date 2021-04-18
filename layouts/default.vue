@@ -153,7 +153,7 @@
         
         options:{
               port: process.env.mqtt_port,
-              host: "localhost",
+              host: process.env.mqtt_host,
               endpoint: "/mqtt",
               connectTimeout: 5000,
               reconnectPeriod: 5000,

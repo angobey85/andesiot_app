@@ -123,7 +123,7 @@ ______ _   _ _   _ _____ _____ _____ _____ _   _  _____
 //CREAR ALARMA
 async function createAlarmRule(newAlarm) {
 
-    const url = "http://localhost:8085/api/v4/rules";
+    const url = "http://"+process.env.EMQX_NODE_HOST+":8085/api/v4/rules";
 
     // topicExample = userid/did/temp  //msgExample = {value: 20}
     const topic = "data/" + newAlarm.userId + "/" + newAlarm.equipment_id + "/" + newAlarm.variable;
@@ -166,7 +166,7 @@ async function createAlarmRule(newAlarm) {
             alarmrule_createdTime: Date.now()
         });
 
-        const url = "http://localhost:8085/api/v4/rules/" + mongoRule.alarmrule_emqx_rule_id;
+        const url = "http://"+process.env.EMQX_NODE_HOST+":8085/api/v4/rules/" + mongoRule.alarmrule_emqx_rule_id;
 
         const payload_templ = '{"notification_user_id":"' + newAlarm.userId + '","notification_equipment_id":"' + newAlarm.equipment_id + '","notification_equipment_name":"' + newAlarm.equipment_name + '","notification_payload":${payload},"notification_topic":"${topic}","notification_emqx_rule_id":"' + mongoRule.alarmrule_emqx_rule_id + '","notification_value":' + newAlarm.value + ',"notification_condition":"' + newAlarm.condition + '","notification_variable_id":"' + newAlarm.variable + '","notification_variable_name":"' + newAlarm.variableFullName + '","notification_triggerTime":' + newAlarm.triggerTime + '}';
         
@@ -185,7 +185,7 @@ async function createAlarmRule(newAlarm) {
 //ACTUALIZAR ALARMA
 
 async function updateAlarmRuleStatus(emqxRuleId, status) {
-    const url = "http://localhost:8085/api/v4/rules/" + emqxRuleId;
+    const url = "http://"+process.env.EMQX_NODE_HOST+":8085/api/v4/rules/" + emqxRuleId;
   
     const newRule = {
       enabled: status
@@ -207,7 +207,7 @@ async function updateAlarmRuleStatus(emqxRuleId, status) {
 async function deleteAlarmRule(emqxRuleId) {
     try {
   
-      const url = "http://localhost:8085/api/v4/rules/" + emqxRuleId;
+      const url = "http://"+process.env.EMQX_NODE_HOST+":8085/api/v4/rules/" + emqxRuleId;
   
       const emqxRule = await axios.delete(url, auth);
   
