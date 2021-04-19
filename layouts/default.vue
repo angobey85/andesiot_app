@@ -246,7 +246,7 @@
 
           const equipmentSubscribeTopic = "data/" + this.$store.state.auth.userData._id + "/+/+";
           const notifSubscribeTopic = "notif/" + this.$store.state.auth.userData._id + "/+/+";
-
+          console.log("this.options.port")
 
           try {
             
