@@ -205,6 +205,7 @@ function startMqttClient (){
         console.log("********ERROR A CONECTAR MQTT********".red);
         console.log("*************************************".red);
         console.log("\n");
+        console.log(error);
 
     });
 
